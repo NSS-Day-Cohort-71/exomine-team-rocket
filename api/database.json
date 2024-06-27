@@ -1,4 +1,98 @@
 {
-    "minerals":[],
-    "facilityMinerals": []
+  "governors": [
+    {
+      "id": 1,
+      "name": "Katrina Bahringer"
+    },
+    {
+      "id": 2,
+      "name": "Patricia Purdy"
+    },
+    {
+      "id": 3,
+      "name": "Lola Wolff"
+    },
+    {
+      "id": 4,
+      "name": "Damon Hartmann"
+    }
+  ],
+  "facilities": [
+    {
+      "id": 1,
+      "name": "Ganymede"
+    },
+    {
+      "id": 2,
+      "name": "Io"
+    },
+    {
+      "id": 3,
+      "name": "Titan"
+    }
+  ],
+  "minerals": [
+    {
+      "id": 1,
+      "mineral": "Iron"
+    },
+    {
+      "id": 2,
+      "mineral": "Chromium"
+    },
+    {
+      "id": 3,
+      "mineral": "Molybdenum"
+    }
+  ],
+  "colonies": [
+    {
+      "id": 1,
+      "name": "Mercury"
+    },
+    {
+      "id": 2,
+      "name": "Venus"
+    },
+    {
+      "id": 3,
+      "name": "Earth"
+    },
+    {
+      "id": 4,
+      "name": "Mars"
+    },
+    {
+      "id": 5,
+      "name": "Jupiter"
+    }
+  ],
+  "facilityMinerals": [
+    {
+      "mineralId": 2,
+      "facilityId": 3,
+      "quantity": 20
+    },
+    {
+      "mineralId": 1,
+      "facilityId": 3,
+      "quantity": 2
+    },
+    {
+      "mineralId": 1,
+      "facilityId": 1,
+      "quantity": 18
+    },
+    {
+      "mineralId": 1,
+      "facilityId": 2,
+      "quantity": 4
+    },
+    {
+      "mineralId": 3,
+      "facilityId": 1,
+      "quantity": 20
+    }
+  ],
+  "colonyMinerals": []
 }
