@@ -37,7 +37,7 @@ export const fetchFacilityMinerals = async (facilityId) => {
 };
 
 // Function to render facility minerals as HTML
-export function renderFacilityMineralsHTML(facilityName, minerals) {
+export const renderFacilityMineralsHTML = (facilityName, minerals) => {
   // Create the heading
   let mineralsHTML = '<h3>Facility Minerals for ' + facilityName + '</h3><div>';
 
@@ -54,7 +54,7 @@ export function renderFacilityMineralsHTML(facilityName, minerals) {
 
   // Return the completed HTML
   return mineralsHTML;
-}
+};
 
 // Function to handle the facility dropdown change event
 export function handleFacilityDropdownChange(facilities) {
