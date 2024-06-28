@@ -1,23 +1,29 @@
 #container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* Align items at the start to allow vertical stacking */
   width: 100%;
 }
 
-.choices,
-.colonies {
+.left-container {
   display: flex;
-  align-items: center;
+  flex-direction: column; /* Stack children vertically */
   flex: 1;
 }
 
 .choices__governor,
-.colony_minerals {
-  width: 100%;
+.choices__facilities {
+  margin-bottom: 1rem; /* Add some space between sections */
+}
+
+.right-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end; /* Align content to the right */
 }
 
 .colonies {
-  text-align: right;
-  white-space: nowrap;
+  text-align: right; /* Align text to the right */
+  white-space: nowrap; /* Prevent text from breaking into new lines */
 }
