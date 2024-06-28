@@ -2,19 +2,23 @@
   "governors": [
     {
       "id": 1,
-      "name": "Katrina Bahringer"
+      "name": "Katrina Bahringer",
+      "colonyId": 3
     },
     {
       "id": 2,
-      "name": "Patricia Purdy"
+      "name": "Patricia Purdy",
+      "colonyId": 2
     },
     {
       "id": 3,
-      "name": "Lola Wolff"
+      "name": "Lola Wolff",
+      "colonyId": 1
     },
     {
       "id": 4,
-      "name": "Damon Hartmann"
+      "name": "Damon Hartmann",
+      "colonyId": 5
     }
   ],
   "facilities": [
