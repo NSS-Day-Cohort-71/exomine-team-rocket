@@ -1,12 +1,13 @@
 import { Colonies } from './Colonies.js';
 import { GovernorOptions } from './Governors.js';
 import { getFacilities } from './Facilities.js';
+import { SpaceCart } from './SpaceCart.js';
 
 const render = async () => {
   const governors = await GovernorOptions();
   const colonies = await Colonies();
-
   const facilities = await getFacilities();
+  const spaceCart = SpaceCart();
 
   const container = document.getElementById('container');
 
@@ -22,6 +23,10 @@ const render = async () => {
           ${facilities}
         </section>
       </article>
+      <article class="order">
+      <h2>Space Cart</h2>
+    ${spaceCart}
+        </article>
     </div>
     <div class="right-container">
       <article class="colonies">
