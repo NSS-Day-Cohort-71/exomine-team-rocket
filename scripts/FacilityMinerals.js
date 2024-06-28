@@ -39,7 +39,7 @@ export const fetchFacilityMinerals = async (facilityId) => {
 // Function to render facility minerals as HTML
 export const renderFacilityMineralsHTML = (facilityName, minerals) => {
   // Create the heading
-  let mineralsHTML = '<h3>Facility Minerals for ' + facilityName + '</h3><div>';
+  let mineralsHTML = `<h3>Facility Minerals for ${facilityName}</h3><div>`;
 
   // Loop through each mineral and add it to the HTML
   for (let i = 0; i < minerals.length; i++) {
@@ -57,12 +57,12 @@ export const renderFacilityMineralsHTML = (facilityName, minerals) => {
 };
 
 // Function to handle the facility dropdown change event
-export function handleFacilityDropdownChange(facilities) {
+export const handleFacilityDropdownChange = (facilities) => {
   // Get the facilities dropdown element
   let facilitiesDropdown = document.getElementById('facilities');
 
   // Add an event listener for when the dropdown value changes
-  facilitiesDropdown.addEventListener('change', async function (event) {
+  facilitiesDropdown.addEventListener('change', async (event) => {
     // Get the selected facility ID
     let facilityId = parseInt(event.target.value);
     let facilityName = '';
@@ -96,4 +96,4 @@ export function handleFacilityDropdownChange(facilities) {
       mineralsSection.innerHTML = '';
     }
   });
-}
+};
