@@ -1,20 +1,19 @@
 import { Colonies } from './Colonies.js';
 import { GovernorOptions } from './Governors.js';
-import { fetchFacilities, renderFacilitiesDropdown, getFacilities } from './Facilities.js';
+import { fetchFacilities, renderFacilitiesDropdown } from './Facilities.js';
 import { handleFacilityDropdownChange } from './FacilityMinerals.js';
 import { SpaceCart } from './SpaceCart.js';
 
 const render = async () => {
-   const facilitiesDropdownHTML = renderFacilitiesDropdown(facilities);
   const governors = await GovernorOptions();
   const colonies = await Colonies();
-  const facilities = await getFacilities();
+  const facilities = await fetchFacilities();
+  const facilitiesDropdownHTML = renderFacilitiesDropdown(facilities);
   const spaceCart = SpaceCart();
-  
-   const container = document.getElementById('container');
 
+  const container = document.getElementById('container');
 
-    container.innerHTML = `
+  container.innerHTML = `
         <div class="left-container">
             <article class="choices">
                 <section class="choices__governor options">
@@ -46,11 +45,9 @@ const render = async () => {
         </article>
         </div>`;
 
-    handleFacilityDropdownChange(facilities); // Pass the facilities to handle the dropdown change
-}
+  handleFacilityDropdownChange(facilities); // Pass the facilities to handle the dropdown change
+};
 
 document.addEventListener('DOMContentLoaded', render); // Ensure DOM is loaded
 
-
 render();
-
