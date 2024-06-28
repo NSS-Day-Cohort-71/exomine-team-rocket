@@ -1,0 +1,23 @@
+#container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.choices,
+.colonies {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.choices__governor,
+.colony_minerals {
+  width: 100%;
+}
+
+.colonies {
+  text-align: right;
+  white-space: nowrap;
+}
