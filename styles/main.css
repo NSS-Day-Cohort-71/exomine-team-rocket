@@ -1,29 +1,85 @@
+/* main.css */
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 2.5em;
+}
+
+/* Container Styles */
 #container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Align items at the start to allow vertical stacking */
+  flex-direction: column;
+  width: 80%;
+  max-width: 1200px;
+}
+
+/* Section Styles */
+.top-container, .bottom-container {
+  display: flex;
   width: 100%;
+  margin: 10px 0;
 }
 
-.left-container {
-  display: flex;
-  flex-direction: column; /* Stack children vertically */
+.left-container, .right-container {
   flex: 1;
-}
-
-.choices__governor,
-.choices__facilities {
-  margin-bottom: 1rem; /* Add some space between sections */
-}
-
-.right-container {
+  margin: 10px;
   display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: flex-end; /* Align content to the right */
+  flex-direction: column;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.choices__governor, .choices__facilities {
+  margin-bottom: 20px;
+}
+
+.options span {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .colonies {
-  text-align: right; /* Align text to the right */
-  white-space: nowrap; /* Prevent text from breaking into new lines */
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20px; /* Adjust margin as needed */
+}
+
+.colony_minerals {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#facility_minerals {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.order {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  align-self: flex-start; /* Align space cart to the top */
+  margin-top: 20px; /* Adjust margin as needed */
 }
