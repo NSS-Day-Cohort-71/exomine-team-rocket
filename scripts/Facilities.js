@@ -4,6 +4,7 @@
 // create facilitiesHTML variable that contains a dropdown that allows the user to select a facility. Use the <select> tag.
 
 // Fetch the facilities data from the database
+import { setFacility } from './TransientState.js';
 export const fetchFacilities = async () => {
   let response = await fetch('http://localhost:8088/facilities');
   let facilities = await response.json();

@@ -9,7 +9,7 @@ const render = async () => {
   const colonies = await Colonies();
   const facilities = await fetchFacilities();
   const facilitiesDropdownHTML = renderFacilitiesDropdown(facilities);
-  const spaceCart = SpaceCart();
+  const spaceCart = await SpaceCart();
 
   const container = document.getElementById('container');
 
@@ -40,8 +40,9 @@ const render = async () => {
                 </section>
             </article>
              <article class="order">
-      <h2>Space Cart</h2>
+      
     ${spaceCart}
+    <button id="placeOrder">Place Order</button>
         </article>
         </div>`;
 

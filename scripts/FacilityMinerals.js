@@ -1,3 +1,6 @@
+import { SpaceCart } from './SpaceCart.js';
+import { setFacility, setMineral } from './TransientState.js';
+
 // Fetch minerals associated with a specific facility ID
 export const fetchFacilityMinerals = async (facilityId) => {
   let response = await fetch(
@@ -36,16 +39,30 @@ export const fetchFacilityMinerals = async (facilityId) => {
   return combinedMinerals;
 };
 
+const handleMineralChoice = async (event) => {
+  if (event.target.name === 'facilityMineral') {
+    setMineral({
+      id: parseInt(event.target.value),
+      checked: event.target.checked,
+      facilityName: event.target.dataset.facility,
+    });
+  }
+  const spaceCartEl = document.querySelector('.order');
+  const spaceCart = await SpaceCart();
+  spaceCartEl.innerHTML = spaceCart;
+};
+
 // Function to render facility minerals as HTML
 export const renderFacilityMineralsHTML = (facilityName, minerals) => {
   // Create the heading
+  document.addEventListener('change', handleMineralChoice);
   let mineralsHTML = `<h3>Facility Minerals for ${facilityName}</h3><div>`;
 
   // Loop through each mineral and add it to the HTML
   for (let i = 0; i < minerals.length; i++) {
     let mineral = minerals[i];
     mineralsHTML += `
-            <input type="radio" id="mineral_${mineral.mineralId}" name="facilityMineral" value="${mineral.mineralId}">
+            <input data-facility="${facilityName}" type="radio" id="mineral_${mineral.mineralId}" name="facilityMineral" value="${mineral.mineralId}">
             <label for="mineral_${mineral.mineralId}">${mineral.quantity} tons of ${mineral.name}</label><br>`;
   }
 
@@ -66,7 +83,7 @@ export const handleFacilityDropdownChange = (facilities) => {
     // Get the selected facility ID
     let facilityId = parseInt(event.target.value);
     let facilityName = '';
-
+    setFacility(facilityId);
     // Find the facility name that matches the selected ID
     for (let i = 0; i < facilities.length; i++) {
       if (facilities[i].id === facilityId) {
