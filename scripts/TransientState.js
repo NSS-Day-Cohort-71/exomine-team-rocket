@@ -3,6 +3,7 @@ export const transientState = {
   colonyId: 0,
   mineralObj: {},
   selectedFacility: 0,
+  combinedMinerals: [],
 };
 
 export const setGovernor = (chosenGovernor) => {
@@ -23,18 +24,59 @@ export const setFacility = (facilityId) => {
   console.log(transientState);
 };
 
-// export const purchaseMineral = () => {
-//     /*
-//         Does the chosen governor's colony already own some of this mineral?
-//             - If yes, what should happen?
-//             - If no, what should happen?
+export const setCombinedMinerals = (minObj) => {
+  transientState.combinedMinerals = minObj;
+  console.log(transientState);
+};
 
-//         Defining the algorithm for this method is traditionally the hardest
-//         task for teams during this group project. It will determine when you
-//         should use the method of POST, and when you should use PUT.
+export const purchaseMineral = async () => {
+  for (const combinedMineral of transientState.combinedMinerals) {
+    if (combinedMineral.mineralId === transientState.mineralObj.id) {
+      transientState.mineralInCart = combinedMineral;
+    }
+  }
+  const postOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(transientState),
+  };
+  const response = await fetch(
+    'http://localhost:8088/colonyMinerals',
+    postOptions
+  );
 
-//         Only the foolhardy try to solve this problem with code.
-//     */
+  const faciltyMinResponse = await fetch(
+    'http://localhost:8088/facilityMinerals'
+  );
+  const facilityMinerals = await faciltyMinResponse.json();
 
-//     document.dispatchEvent(new CustomEvent("stateChanged"))
-// }
+  const colMinResponse = await fetch('http://localhost:8088/colonyMinerals');
+  const cololnyMinerals = await colMinResponse.json();
+  const lastOrder = cololnyMinerals[cololnyMinerals.length - 1];
+  for (const facilityMineral of facilityMinerals) {
+    if (lastOrder.mineralInCart.facilityMineralId === facilityMineral.id) {
+      facilityMineral.quantity = facilityMineral.quantity - 1;
+      const res = await fetch(
+        `http://localhost:8088/facilityMinerals/${facilityMineral.id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(facilityMineral),
+        }
+      );
+      const combinedMineralIndex = transientState.combinedMinerals.findIndex(
+        (mineral) => mineral.mineralId === facilityMineral.mineralId
+      );
+      if (combinedMineralIndex !== -1) {
+        transientState.combinedMinerals[combinedMineralIndex].quantity =
+          facilityMineral.quantity;
+      }
+    }
+  }
+
+  document.dispatchEvent(new CustomEvent('stateChanged'));
+};
