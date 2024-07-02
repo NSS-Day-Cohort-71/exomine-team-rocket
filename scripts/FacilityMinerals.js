@@ -1,10 +1,14 @@
 import { SpaceCart } from './SpaceCart.js';
-import { setFacility, setMineral } from './TransientState.js';
+import {
+  setCombinedMinerals,
+  setFacility,
+  setMineral,
+} from './TransientState.js';
 
 // Fetch minerals associated with a specific facility ID
 export const fetchFacilityMinerals = async (facilityId) => {
   let response = await fetch(
-    `http://localhost:8088/facilityMinerals?facilityId=${facilityId}`
+    ` http://localhost:8088/facilityMinerals?facilityId=${facilityId}`
   );
   let facilityMinerals = await response.json();
 
@@ -26,7 +30,7 @@ export const fetchFacilityMinerals = async (facilityId) => {
       if (facilityMineral.mineralId === mineral.id) {
         // Combine the information and add it to the combinedMinerals array
         combinedMinerals.push({
-          id: facilityMineral.id,
+          facilityMineralId: facilityMineral.id,
           mineralId: facilityMineral.mineralId,
           facilityId: facilityMineral.facilityId,
           quantity: facilityMineral.quantity,
@@ -35,7 +39,7 @@ export const fetchFacilityMinerals = async (facilityId) => {
       }
     }
   }
-
+  setCombinedMinerals(combinedMinerals);
   return combinedMinerals;
 };
 
@@ -56,13 +60,12 @@ const handleMineralChoice = async (event) => {
 export const renderFacilityMineralsHTML = (facilityName, minerals) => {
   // Create the heading
   document.addEventListener('change', handleMineralChoice);
-  let mineralsHTML = `<h3>Facility Minerals for ${facilityName}</h3><div>`;
+  let mineralsHTML = ` <h3>Facility Minerals for ${facilityName}</h3><div>`;
 
   // Loop through each mineral and add it to the HTML
   for (let i = 0; i < minerals.length; i++) {
     let mineral = minerals[i];
-    mineralsHTML += `
-            <input data-facility="${facilityName}" type="radio" id="mineral_${mineral.mineralId}" name="facilityMineral" value="${mineral.mineralId}">
+    mineralsHTML += ` <input data-facility="${facilityName}" type="radio" id="mineral_${mineral.mineralId}" name="facilityMineral" value="${mineral.mineralId}">
             <label for="mineral_${mineral.mineralId}">${mineral.quantity} tons of ${mineral.name}</label><br>`;
   }
 
