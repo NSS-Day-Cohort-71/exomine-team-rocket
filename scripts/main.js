@@ -44,14 +44,13 @@ const render = async () => {
                 </section>
             </article>
              <article class="order">
-      
     ${spaceCart}
-    <button id="placeOrder">Place Order</button>
         </article>
         </div>`;
 
   handleFacilityDropdownChange(facilities); // Pass the facilities to handle the dropdown change
 };
+
 document.addEventListener('stateChanged', async () => {
   const facilities = await fetchFacilities();
   const selectedFacilityId = transientState.selectedFacility;
