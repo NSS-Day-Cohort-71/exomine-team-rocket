@@ -6,7 +6,9 @@ export const Colonies = async () => {
   const currentState = transientState;
   let html = '<h2>Colony Minerals</h2>';
 
-  const colonyMineralsResponse = await fetch('http://localhost:8088/colonyMinerals');
+  const colonyMineralsResponse = await fetch(
+    'http://localhost:8088/colonyMinerals'
+  );
   const colonyMinerals = await colonyMineralsResponse.json();
 
   const mineralsResponse = await fetch('http://localhost:8088/minerals');
@@ -15,21 +17,37 @@ export const Colonies = async () => {
   for (const colony of colonies) {
     if (colony.id === currentState.colonyId) {
       html = `<h2>${colony.name} Minerals</h2>`;
-      const colonyMineralsList = colonyMinerals.filter(cm => cm.colonyId === colony.id);
-      
-      // Combine the quantities of the same minerals
-      const combinedColonyMinerals = colonyMineralsList.reduce((acc, colonyMineral) => {
-        const existingMineral = acc.find(cm => cm.mineralId === colonyMineral.mineralId);
-        if (existingMineral) {
-          existingMineral.quantity += colonyMineral.quantity;
-        } else {
-          acc.push({ ...colonyMineral });
+
+      // Find all minerals for the current colony
+      const colonyMineralsList = [];
+      for (const cm of colonyMinerals) {
+        if (cm.colonyId === colony.id) {
+          colonyMineralsList.push(cm);
         }
-        return acc;
-      }, []);
+      }
+
+      // Combine the quantities of the same minerals
+      const combinedColonyMinerals = [];
+      for (const colonyMineral of colonyMineralsList) {
+        let found = false;
+        for (const existingMineral of combinedColonyMinerals) {
+          if (existingMineral.mineralId === colonyMineral.mineralId) {
+            existingMineral.quantity += colonyMineral.quantity;
+            found = true;
+          }
+        }
+        if (!found) {
+          combinedColonyMinerals.push({ ...colonyMineral });
+        }
+      }
 
       for (const colonyMineral of combinedColonyMinerals) {
-        const mineral = minerals.find(m => m.id === colonyMineral.mineralId);
+        let mineral = null;
+        for (const m of minerals) {
+          if (m.id === colonyMineral.mineralId) {
+            mineral = m;
+          }
+        }
         if (mineral) {
           html += `<p>${colonyMineral.quantity} tons of ${mineral.mineral}</p>`;
         }
