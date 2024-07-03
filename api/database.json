@@ -76,7 +76,7 @@
       "facilityMineralId": 1,
       "mineralId": 2,
       "facilityId": 3,
-      "quantity": 16,
+      "quantity": 44,
       "name": "Chromium",
       "id": 1
     },
@@ -84,7 +84,7 @@
       "facilityMineralId": 2,
       "mineralId": 1,
       "facilityId": 3,
-      "quantity": 1,
+      "quantity": 111,
       "name": "Iron",
       "id": 2
     },
@@ -92,7 +92,7 @@
       "facilityMineralId": 3,
       "mineralId": 1,
       "facilityId": 1,
-      "quantity": 2,
+      "quantity": 200,
       "name": "Iron",
       "id": 3
     },
@@ -106,7 +106,7 @@
       "facilityMineralId": 5,
       "mineralId": 3,
       "facilityId": 1,
-      "quantity": 6,
+      "quantity": 63,
       "name": "Molybdenum",
       "id": 5
     }
