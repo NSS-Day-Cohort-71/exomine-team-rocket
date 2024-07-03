@@ -73,10 +73,12 @@
   ],
   "facilityMinerals": [
     {
-      "id": 1,
+      "facilityMineralId": 1,
       "mineralId": 2,
       "facilityId": 3,
-      "quantity": 20
+      "quantity": 17,
+      "name": "Chromium",
+      "id": 1
     },
     {
       "id": 2,
@@ -85,10 +87,12 @@
       "quantity": 2
     },
     {
-      "id": 3,
+      "facilityMineralId": 3,
       "mineralId": 1,
       "facilityId": 1,
-      "quantity": 13
+      "quantity": 11,
+      "name": "Iron",
+      "id": 3
     },
     {
       "id": 4,
@@ -97,10 +101,12 @@
       "quantity": 1
     },
     {
-      "id": 5,
+      "facilityMineralId": 5,
       "mineralId": 3,
       "facilityId": 1,
-      "quantity": 13
+      "quantity": 10,
+      "name": "Molybdenum",
+      "id": 5
     }
   ],
   "colonyMinerals": [
@@ -1628,6 +1634,42 @@
         "name": "Molybdenum"
       },
       "id": 49
+    },
+    {
+      "colonyId": 3,
+      "mineralId": 1,
+      "quantity": 2,
+      "id": 50
+    },
+    {
+      "colonyId": 3,
+      "mineralId": 1,
+      "quantity": 1,
+      "id": 51
+    },
+    {
+      "colonyId": 3,
+      "mineralId": 3,
+      "quantity": 3,
+      "id": 52
+    },
+    {
+      "colonyId": 3,
+      "mineralId": 3,
+      "quantity": 1,
+      "id": 53
+    },
+    {
+      "colonyId": 3,
+      "mineralId": 2,
+      "quantity": 2,
+      "id": 54
+    },
+    {
+      "colonyId": 2,
+      "mineralId": 2,
+      "quantity": 1,
+      "id": 55
     }
   ]
 }
